@@ -9,7 +9,7 @@ import poly.persistance.mongo.IMongoTestMapper;
 import poly.service.IMongoTestService;
 
 @Service("MongoTestService")
-public class MongoTestService implements IMongoTestService{
+public class MongoTestService implements IMongoTestService {
 	
 	@Resource(name="MongoTestMapper")
 	private IMongoTestMapper mongoTestMapper;

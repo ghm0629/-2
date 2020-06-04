@@ -36,7 +36,7 @@ public class MongoTestController {
 		
 		mongoTestService.createCollection();
 		
-		log.info(this.getClass().getName() + ".test End");
+		log.info(this.getClass().getName() + ".test End!");
 		
 		return "success";
 		

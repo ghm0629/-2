@@ -12,7 +12,7 @@ public interface IMelonMapper {
 	 * @param colNm 생성하는 컬렉션 이름
 	 */
 	public boolean createCollection(String colNm) throws Exception;
-	
+
 	/**
 	 * MongoDB 데이터 저장하기
 	 * 
@@ -26,5 +26,5 @@ public interface IMelonMapper {
 	 * @param colNm
 	 */
 	List<MelonDTO> getRank(String colNm) throws Exception;
-	
+
 }

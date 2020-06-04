@@ -47,9 +47,9 @@ public class MelonService implements IMelonService {
 
 		// <div class="service_list_song"> 이 태그 내에서 있는 HTML소스만 element에 저장됨
 		Elements element = doc.select("div.service_list_song");
-
+		log.info(element.toString());
 		// Iterator을 사용하여 멜론 Top100의 50위까지 순위 정보를 가져오기
-		Iterator<Element> rank50List = element.select("tr.1st50").iterator(); // 멜론 50위까지 차크
+		Iterator<Element> rank50List = element.select("tr.lst50").iterator(); // 멜론 50위까지 차크
 
 		// 순위는 1위부터 50위까지 수집되기 때문에 반복문을 통해 데이터 저장
 		while (rank50List.hasNext()) {
@@ -60,7 +60,7 @@ public class MelonService implements IMelonService {
 			String rank = songInfo.select("span.rank").text(); // 순위
 			String song = songInfo.select("div.ellipsis a").eq(0).text(); // 노래
 			String singer = songInfo.select("div.ellipsis a").eq(1).text(); // 가수
-			String album = songInfo.select("div.ellipsis a").eq(2).text(); // 앨범
+			String album = songInfo.select("div.ellipsis a").eq(3).text(); // 앨범
 
 			songInfo = null;
 
@@ -75,35 +75,40 @@ public class MelonService implements IMelonService {
 			// 한번에 여러개의 데이터를 MongoDB에 저장할 List 형태의 데이터 저장하기
 			pList.add(pDTO);
 
-			String colNm = "MelonTOP100_" + DateUtil.getDateTime("yyyyMMdd"); // 생성할 컬렉션명
-			// MongoDB Collection 생성하기
-			melonMapper.createCollection(colNm);
-
-			// MongoDB에 저장하기
-			melonMapper.insertRank(pList, colNm);
-
-			// 로그 찍기(추후 찍은 로그를 통해 이 함수에 접근했는지 파악하기 용이하다.)
-			log.info(this.getClass().getName() + ".collectMelonRank End!");
 		}
-			return res;
-		}
+		log.info("service pList size : " + pList.size());
+		String colNm = "MelonTOP100_" + DateUtil.getDateTime("yyyyMMdd"); // 생성할 컬렉션명
+		// MongoDB Collection 생성하기
+		log.info("create 시작");
+		melonMapper.createCollection(colNm);
+		log.info("create 끝");
+		log.info("insert 시작");
+		// MongoDB에 저장하기
+		melonMapper.insertRank(pList, colNm);
+		log.info("insert 끝");
+		// 로그 찍기(추후 찍은 로그를 통해 이 함수에 접근했는지 파악하기 용이하다.)
+		log.info(this.getClass().getName() + ".collectMelonRank End!");
+
+		return res;
 		
-		@Override
-		public List<MelonDTO> getRank() throws Exception {
-			
-			log.info(this.getClass().getName() + ".getRank Start!");
-			
-			// 조회할 컬렉션 이름
-			String colNm = "MelonTOP100_" + DateUtil.getDateTime("yyyyMMdd"); // 생성할 컬렉션명
-			
-			List<MelonDTO> rList = melonMapper.getRank(colNm);
-			
-			if (rList == null) {
-					rList = new ArrayList<MelonDTO>();				
-			}
-			
-			log.info(this.getClass().getName() + ".getRank End!");
-			
-			return rList;
-		}
+		  }
+		  
+		  @Override
+		  public List<MelonDTO> getRank() throws Exception {
+		  
+		  log.info(this.getClass().getName() + ".getRank Start!");
+		  
+		  // 조회할 컬렉션 이름
+		  String colNm = "MelonTOP100_" + DateUtil.getDateTime("yyyyMMdd"); // 생성할 컬렉션명
+		  
+		  List<MelonDTO> rList = melonMapper.getRank(colNm);
+		  
+		  if (rList == null) { 
+			  rList = new ArrayList<MelonDTO>(); }
+		  
+		  log.info(this.getClass().getName() + ".getRank End!");
+		  
+		  return rList;
+		 
 	}
+}

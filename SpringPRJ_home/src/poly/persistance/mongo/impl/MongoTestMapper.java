@@ -15,7 +15,6 @@ public class MongoTestMapper implements IMongoTestMapper{
 	@Autowired
 	private MongoTemplate mongodb;
 	
-	// 濡쒓렇 �뙆�씪 �깮�꽦 諛� 濡쒓렇 異쒕젰�쓣 �쐞�븳 log4j �봽�젅�엫�썙�겕�쓽 �옄諛� 媛앹껜
 	private Logger log = Logger.getLogger(this.getClass());
 
 	@Override

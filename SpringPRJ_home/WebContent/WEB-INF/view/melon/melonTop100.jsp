@@ -9,7 +9,7 @@
 		
 		//페이지 로딩 완료 후, 멜론 순위가져오기 함수 실행함
 		getRank();
-	})
+	});
 	
 	//멜론 순위가져오기
 	function getRank() {
@@ -38,8 +38,6 @@
 	
 	}	
 </script>
-<meta charset="EUC-KR">
-<title>Insert title here</title>
 </head>
 <body>
 	<h1>멜론 순위</h1>
