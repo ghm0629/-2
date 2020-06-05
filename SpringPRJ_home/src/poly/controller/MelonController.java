@@ -19,7 +19,6 @@ import poly.service.IMelonService;
  * Controller 선언해야만 Spring 프레임워크에서 Controller인지 인식 가능
  * 자바 서블릿 역할 수행
  */
-
 @Controller
 public class MelonController {
 	private Logger log = Logger.getLogger(this.getClass());
@@ -49,7 +48,6 @@ public class MelonController {
 	/**
 	 * 멜론 데이터 가져오는 일반 화면
 	 */
-
 	@RequestMapping(value = "melon/melonTop100")
 	public String melonTop100(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
@@ -57,7 +55,7 @@ public class MelonController {
 
 		log.info(this.getClass().getName() + ".melonTop100 End!");
 
-		return "/melon/melonTop100";
+		return "melon/melonTop100";
 	}
 
 	/**
@@ -65,7 +63,6 @@ public class MelonController {
 	 */
 
 	@RequestMapping(value = "melon/getRank")
-
 	@ResponseBody
 	public List<MelonDTO> getRank(HttpServletRequest request, HttpServletResponse response) throws Exception {
 

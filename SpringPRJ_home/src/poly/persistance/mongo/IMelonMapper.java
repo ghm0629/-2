@@ -23,8 +23,8 @@ public interface IMelonMapper {
 	/**
 	 * MongoDB 멜론 데이터 가져오기
 	 * 
-	 * @param colNm
+	 * @param colNm 가져올 컬렉션 이름
 	 */
-	List<MelonDTO> getRank(String colNm) throws Exception;
+	public List<MelonDTO> getRank(String colNm) throws Exception;
 
 }

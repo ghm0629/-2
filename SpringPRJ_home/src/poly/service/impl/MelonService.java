@@ -47,7 +47,7 @@ public class MelonService implements IMelonService {
 
 		// <div class="service_list_song"> 이 태그 내에서 있는 HTML소스만 element에 저장됨
 		Elements element = doc.select("div.service_list_song");
-		log.info(element.toString());
+
 		// Iterator을 사용하여 멜론 Top100의 50위까지 순위 정보를 가져오기
 		Iterator<Element> rank50List = element.select("tr.lst50").iterator(); // 멜론 50위까지 차크
 
@@ -76,16 +76,14 @@ public class MelonService implements IMelonService {
 			pList.add(pDTO);
 
 		}
-		log.info("service pList size : " + pList.size());
+
 		String colNm = "MelonTOP100_" + DateUtil.getDateTime("yyyyMMdd"); // 생성할 컬렉션명
 		// MongoDB Collection 생성하기
-		log.info("create 시작");
 		melonMapper.createCollection(colNm);
-		log.info("create 끝");
-		log.info("insert 시작");
+
 		// MongoDB에 저장하기
 		melonMapper.insertRank(pList, colNm);
-		log.info("insert 끝");
+
 		// 로그 찍기(추후 찍은 로그를 통해 이 함수에 접근했는지 파악하기 용이하다.)
 		log.info(this.getClass().getName() + ".collectMelonRank End!");
 
