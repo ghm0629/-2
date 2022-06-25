@@ -41,7 +41,7 @@
 		<dependency>
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-mongodb</artifactId>
-			<version>1.9.11.RELEASE</version>
+			<version>3.3.5</version>
 		</dependency>
 
 		<!-- redis value를 json 형태로 표현하기 위해 추가 setValueSerializer(json) -->
